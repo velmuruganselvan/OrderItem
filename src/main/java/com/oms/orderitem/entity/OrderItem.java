@@ -20,6 +20,8 @@ public class OrderItem {
     private String productName;
     @Column(name = "quantity")
     private int quantity;
+    @Column(name = "orderid")
+    private int orderid;
 
 
 }

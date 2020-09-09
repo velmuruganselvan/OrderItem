@@ -8,7 +8,7 @@ public interface OrderItemService {
 
     public void saveOrderItem(OrderItemDTO orderItemDTO);
 
-    public OrderItemDTO getOrderItemByProductCode(String productCode);
+    public List<OrderItemDTO> getOrderItem(int orderid);
 
     public List<OrderItemDTO> retrieveAllOrderItems();
 

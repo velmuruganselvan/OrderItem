@@ -34,16 +34,16 @@ public class OrderItemController {
         return null;
     }
 
-    @GetMapping("{productCode}")
-    public  OrderItemDTO getOrderItem(@PathVariable String productCode) {
-        OrderItemDTO orderItemDTO = null;
+    @GetMapping("{id}")
+    public  List<OrderItemDTO> getOrderItem(@PathVariable("id") int orderid) {
+        List<OrderItemDTO> orderItemDTOS = null;
         try {
-            orderItemDTO = orderItemService.getOrderItemByProductCode(productCode);
+            orderItemDTOS = orderItemService.getOrderItem(orderid);
         } catch (Exception e) {
             log.error("Unable to retrieve the product items.. {}",e.getMessage());
             throw new OrderNotFoundException();
         }
-        return orderItemDTO;
+        return orderItemDTOS;
     }
 
     @GetMapping("/")

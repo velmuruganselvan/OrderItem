@@ -21,6 +21,11 @@ public class OrderItemDTO {
     @NotNull
     @Positive
     private int quantity;
+    private int orderId;
+
+    public OrderItemDTO() {
+
+    }
 
 
     @Override

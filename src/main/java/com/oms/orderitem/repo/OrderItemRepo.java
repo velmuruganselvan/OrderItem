@@ -6,9 +6,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface OrderItemRepo extends JpaRepository<OrderItem, String> {
+import java.util.List;
 
-    @Query(value = "select * from orderitem where productcode = :productcode", nativeQuery = true)
-    public OrderItem findByProductCode(@Param("productcode") String productcode);
+@Repository
+public interface OrderItemRepo extends JpaRepository<OrderItem, Integer> {
+
+    @Query(value = "select * from orderitem where orderid = :orderid", nativeQuery = true)
+    public List<OrderItem> findByProductCode(@Param("orderid") int orderid);
 }

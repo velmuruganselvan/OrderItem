@@ -49,17 +49,25 @@ public class OrderItemServiceImpl implements OrderItemService {
     }
 
     @Override
-    public OrderItemDTO getOrderItemByProductCode(String productCode) {
-        OrderItemDTO orderItemDTO = null;
+    public List<OrderItemDTO> getOrderItem(int orderid) {
+        List<OrderItemDTO> orderItemDTOS = null;
         try {
-            OrderItem orderItem = orderItemRepo.findByProductCode(productCode);
-            orderItemDTO = modelMapper.map(orderItem, OrderItemDTO.class);
+            List<OrderItem> orderItems = orderItemRepo.findByProductCode(orderid);
+            if (orderItems!=null && orderItems.size()>0) {
+                orderItemDTOS = new ArrayList<>();
+                for(OrderItem orderItem : orderItems) {
+                    OrderItemDTO orderItemDTO = modelMapper.map(orderItem, OrderItemDTO.class);
+                    orderItemDTOS.add(orderItemDTO);
+                }
+            } else {
+                throw new OrderNotFoundException();
+            }
         } catch (Exception e) {
             log.error("Unable to retrieve the product details.. {}",e.getMessage());
             throw new OrderNotFoundException();
         }
 
-        return orderItemDTO;
+        return orderItemDTOS;
     }
 
     @Override
